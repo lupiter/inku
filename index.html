@@ -17,10 +17,10 @@ data.forEach(x => {
     link.textContent = x.title;
     link.href = x.url;
     newElem.querySelector(".description").textContent = x.description;
-    list.appendChild(newElem);
     newElem.querySelector("li").onclick = (event) => {
         preview.src = x.url;
     };
+    list.appendChild(newElem);
 });
 });
 </script>
