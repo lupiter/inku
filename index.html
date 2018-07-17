@@ -18,7 +18,7 @@ data.forEach(x => {
     link.href = x.url;
     newElem.querySelector(".description").textContent = x.description;
     list.appendChild(newElem);
-    newElem.onclick = (event) => {
+    newElem.querySelector("li").onclick = (event) => {
         preview.src = x.url;
     };
 });
