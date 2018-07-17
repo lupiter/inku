@@ -2,7 +2,7 @@
 <head>
 <style>
 img {
-    object-fit: scale-down;
+    object-fit: cover;
     height: 200px;
     width: 200px;
     border-radius: 10px;
@@ -11,12 +11,20 @@ ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 1em;
+    pdding: 0;
+    list-style-type: none;
+}
+li {
+    margin: 1em;
 }
 
 li, a {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+}
+body {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 </style>
 
@@ -32,9 +40,8 @@ let list = document.getElementById("link-list");
 let template = document.getElementById("list-template");
 data.forEach(x => {
     let newElem = document.importNode(template.content, true);
-    let link = newElem.querySelector("a .link-text");
-    link.textContent = x.title;
-    link.href = x.url;
+    newElem.querySelector("a").href = x.url;
+    newElem.querySelector(".link-text").textContent = x.title;
     newElem.querySelector(".description").textContent = x.description;
     newElem.querySelector("img").src = x.image;
     list.appendChild(newElem);
