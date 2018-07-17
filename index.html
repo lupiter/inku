@@ -2,6 +2,7 @@
 <head>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
 let data = [
     {url: "https://google.com", title: "Google", description: "Search the web"},
     {url: "https://github.com", title: "Github", description: "Sharing code"},
@@ -20,6 +21,7 @@ data.forEach(x => {
     newElem.onclick = (event) => {
         preview.src = x.url;
     };
+});
 });
 </script>
 </head>
