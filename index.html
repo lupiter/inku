@@ -1,14 +1,22 @@
 <html>
 <head>
 <style>
-.preview {
-    width: 200px;
-    height: 200px;
-}
 img {
     object-fit: scale-down;
-    height: 100%;
-    width: 100%;
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+}
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+li, a {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
 </style>
 
@@ -24,13 +32,11 @@ let list = document.getElementById("link-list");
 let template = document.getElementById("list-template");
 data.forEach(x => {
     let newElem = document.importNode(template.content, true);
-    let link = newElem.querySelector("a");
+    let link = newElem.querySelector("a .link-text");
     link.textContent = x.title;
     link.href = x.url;
     newElem.querySelector(".description").textContent = x.description;
-    newElem.querySelector("li").onclick = (event) => {
-        preview.src = x.image;
-    };
+    newElem.querySelector("img").src = x.image;
     list.appendChild(newElem);
 });
 });
@@ -40,14 +46,13 @@ data.forEach(x => {
     <header>
         Using [sample.yaml] <button>✏️</button>
     </header>
-    <section class="preview"><img src="" id="preview-frame" /></section>
     <section class="list">
         <ul id="link-list">
         </ul>
     </section>
     <template id="list-template">
         <li>
-            <a href=""></a>
+            <a href=""><img src=""/><span class="link-text"></span></a>
             <span class="description"></span>
         </li>
     </template>
