@@ -1,0 +1,40 @@
+<html>
+<head>
+
+<script>
+let data = [
+    {url: "https://google.com", title: "Google", description: "Search the web"},
+    {url: "https://github.com", title: "Github", description: "Sharing code"},
+];
+
+let preview = document.getElementById("preview-frame");
+let list = document.getElementById("link-list");
+let template = document.getElementById("list-template");
+data.forEach(x => {
+    let newElem = document.importNode(template.content, true);
+    let link = newElem.querySelector("a");
+    link.textContent = x.title;
+    link.href = x.url;
+    newElem.querySelector(".description").textContent = x.description;
+    list.appendChild(newElem);
+    newElem.onclick = (event) => {
+        preview.src = x.url;
+    };
+});
+</script>
+</head>
+<body>
+    <header>
+        Using [sample.yaml] <button>✏️</button>
+    </header>
+    <section class="preview"><iframe src="" id="preview-frame"/></section>
+    <section class="list">
+        <ul id="link-list">
+        </ul>
+    </section>
+    <template id="list-template">
+        <a href=""></a>
+        <span class="description"></span>
+    </template>
+</body>
+</html>
