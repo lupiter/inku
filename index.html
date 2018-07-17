@@ -1,11 +1,20 @@
 <html>
 <head>
+<style>
+.preview {
+    width: 200px;
+    height: 200px;
+}
+img {
+    object-fit: scale-down;
+}
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 let data = [
-    {url: "https://google.com", title: "Google", description: "Search the web"},
-    {url: "https://github.com", title: "Github", description: "Sharing code"},
+    {url: "https://google.com", title: "Google", description: "Search the web", image: "https://images.unsplash.com/photo-1531752074002-abf991376d04"},
+    {url: "https://github.com", title: "Github", description: "Sharing code", image: "https://images.unsplash.com/photo-1496200186974-4293800e2c20"},
 ];
 
 let preview = document.getElementById("preview-frame");
@@ -18,7 +27,7 @@ data.forEach(x => {
     link.href = x.url;
     newElem.querySelector(".description").textContent = x.description;
     newElem.querySelector("li").onclick = (event) => {
-        preview.src = x.url;
+        preview.src = x.image;
     };
     list.appendChild(newElem);
 });
@@ -29,14 +38,16 @@ data.forEach(x => {
     <header>
         Using [sample.yaml] <button>✏️</button>
     </header>
-    <section class="preview"><iframe src="" id="preview-frame"></iframe></section>
+    <section class="preview"><img src="" /></section>
     <section class="list">
         <ul id="link-list">
         </ul>
     </section>
     <template id="list-template">
-        <li><a href=""></a>
-        <span class="description"></span></li>
+        <li>
+            <a href=""></a>
+            <span class="description"></span>
+        </li>
     </template>
 </body>
 </html>
