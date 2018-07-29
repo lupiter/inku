@@ -21,6 +21,20 @@ function fetchYaml(url, template, list) {
 	});
 }
 
+let sample = "https://www.dropbox.com/s/st98mzqgvsdho9t/books.yaml?raw=1";
+
+function readFile(fileNameDisplay, template, list) {
+	let hash = decodeURI(window.location.hash.substring(1));
+	if (!hash) {
+		let encoded = encodeURIComponent(sample);
+		window.location.hash = '#' + encoded;
+	}
+	let showing = hash || sample;
+	fileNameDisplay.textContent = showing;
+	fetchYaml(showing, template, list);
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
 	let list = document.getElementById("link-list");
 	let template = document.getElementById("list-template");
@@ -29,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let editCancel = document.getElementById("cancel-button");
 	let editSave = document.getElementById("save-button");
 	let urlField = document.getElementById("url-field");
+	let fileNameDisplay = document.getElementById("file-name");
 	edit.onclick = (e => { 
 		edit.style.display = 'none';
 		form.style.display = 'flex';
@@ -38,7 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		form.style.display = 'none';
 	});
 	editSave.onclick = (e => {
-		fetchYaml(urlField.value, template, list);
-	})
-	fetchYaml("https://www.dropbox.com/s/st98mzqgvsdho9t/books.yaml?raw=1", template, list);
+		let encoded = encodeURIComponent(urlField.value);
+		window.location.hash = '#' + encoded;
+		readFile(fileNameDisplay, template, list);
+	});
+	readFile(fileNameDisplay, template, list);
 });
