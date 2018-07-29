@@ -1,85 +1,13 @@
 <!DOCTYPE html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-body, html {
-    margin:0;
-    padding:0;
-}
-img {
-    object-fit: cover;
-    height: 200px;
-    width: 200px;
-    border-radius: 10px;
-    max-width: 40vw;
-}
-ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-li {
-    margin: 1em;
-}
-
-li, a {
-    display: flex;
-    flex-direction: column;
-}
-a, a:visited, a:hover {
-    text-decoration: none;
-    color: black;
-    font-size: larger;
-}
-body {
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-h1 {
-    font-size: 3em;
-    font-weight: 100;
-}
-button {
-    border-radius: 2px;
-    border-width: 0;
-    background: powderblue;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-
-button:hover {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-let data = [
-    {url: "https://google.com", title: "Google", description: "Search the web", image: "https://images.unsplash.com/photo-1531752074002-abf991376d04"},
-    {url: "https://github.com", title: "Github", description: "Sharing code", image: "https://images.unsplash.com/photo-1496200186974-4293800e2c20"},
-];
-
-let preview = document.getElementById("preview-frame");
-let list = document.getElementById("link-list");
-let template = document.getElementById("list-template");
-data.forEach(x => {
-    let newElem = document.importNode(template.content, true);
-    newElem.querySelector("a").href = x.url;
-    newElem.querySelector(".link-text").textContent = x.title;
-    newElem.querySelector(".description").textContent = x.description;
-    newElem.querySelector("img").src = x.image;
-    list.appendChild(newElem);
-});
-});
-</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.3.0/yaml.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>Inku</h1>
+        <h1>〽 Inku</h1>
         Using [sample.yaml] <button>✏️</button>
     </header>
     <section class="list">
