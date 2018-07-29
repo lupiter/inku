@@ -16,7 +16,7 @@ function loadYaml(template, list, yamlString) {
 }
 
 function fetchYaml(url, template, list) {
-	fetch(url).then(x => x.text()).then(x => {
+	fetch(url, {mode: 'cors'}).then(x => x.text()).then(x => {
 		loadYaml(template, list, x);
 	});
 }
