@@ -27,7 +27,6 @@ function fetchYaml(url) {
 function showFile(file) {
 	let link = file.link;
 	document.getElementById('file-details').style.display = 'flex';
-	document.getElementById('file-icon').src = file.icon;
 	document.getElementById('file-name').textContent = file.name;
 	fetchYaml(file.link);
 }
