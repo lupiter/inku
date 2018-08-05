@@ -10,9 +10,24 @@
 </head>
 <body>
     <header>
-        <h1>〽 Inku</h1>
+        <h1>〽 inku</h1>
         <span id='dropbox-button'></span>
-        <div id='file-details'><span id='file-name'></span></div>
+        <div id='file-details'><span id='file-name'></span><button class='save'>save</button></div>
+        <button id="add-button">+ link</button>
+        <div id='add-form' class='form'>
+	        <span class='picture-form'><label id='img-label' for='img-file'>picture </label> 
+	        	<span class='options'>
+	        		<label><input type="radio" id='upload-mode' name='mode' disabled> upload</label>
+	        		<label><input type="radio" id='url-mode' name='mode' checked> url</label>
+	        	</span>
+	        </span>
+	        <span class='row'><input type="file" id='img-file' accept="image/*" class='right'/>
+	        	<input type="url" id='img-url' class='url' class='right' /></span>
+	        <label class='row'>link <input type="url" id='link-url' class='right' /></label>
+	        <label class='row'>title <input type="text" id='link-title' class="right" /></label>
+	        <label class='row'>description <input type="text" id='link-description' class="right"/></label>
+	        <span class='footer'><button id='cancel-button'>cancel</button><button id='save-button'>save</button></span>
+        </div>
     </header>
         <section class="list">
         <ul id="link-list">
