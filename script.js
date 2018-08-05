@@ -7,7 +7,10 @@ function addItem(template, item, list) {
 	list.appendChild(newElem);
 }
 
-function loadYaml(template, list, yamlString) {
+function loadYaml(yamlString) {
+	let list = document.getElementById("link-list");
+	let template = document.getElementById("list-template");
+	
 	list.innerHTML = '';
 	let data = jsyaml.load(yamlString);
 	data.forEach(x => {
@@ -15,47 +18,35 @@ function loadYaml(template, list, yamlString) {
 	});
 }
 
-function fetchYaml(url, template, list) {
+function fetchYaml(url) {
 	fetch(url, {mode: 'cors'}).then(x => x.text()).then(x => {
-		loadYaml(template, list, x);
+		loadYaml(x);
 	});
 }
 
-let sample = "https://www.dropbox.com/s/st98mzqgvsdho9t/books.yaml?raw=1";
-
-function readFile(fileNameDisplay, template, list) {
-	let hash = decodeURI(window.location.hash.substring(1));
-	if (!hash) {
-		let encoded = encodeURIComponent(sample);
-		window.location.hash = '#' + encoded;
-	}
-	let showing = hash || sample;
-	fileNameDisplay.textContent = showing;
-	fetchYaml(showing, template, list);
+function showFile(file) {
+	let link = file.link;
+	document.getElementById('file-details').style.display = 'flex';
+	document.getElementById('file-icon').src = file.icon;
+	document.getElementById('file-name').textContent = file.name;
+	fetchYaml(file.link);
 }
 
+function setupDropboxOpen() {
+	options = {
+	    success: function(files) {
+	        showFile(files[0]);
+	    },
+	    linkType: "direct",
+	    multiselect: false,
+	    extensions: ['.yaml'],
+	    folderselect: false
+	};
+	let button = Dropbox.createChooseButton(options);
+	document.getElementById("dropbox-button").appendChild(button);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-	let list = document.getElementById("link-list");
-	let template = document.getElementById("list-template");
-	let form = document.getElementById("upload-form");
-	let edit = document.getElementById("edit-button");
-	let editCancel = document.getElementById("cancel-button");
-	let editSave = document.getElementById("save-button");
-	let urlField = document.getElementById("url-field");
-	let fileNameDisplay = document.getElementById("file-name");
-	edit.onclick = (e => { 
-		edit.style.display = 'none';
-		form.style.display = 'flex';
-	});
-	editCancel.onclick = (e => {
-		edit.style.display = 'inline';
-		form.style.display = 'none';
-	});
-	editSave.onclick = (e => {
-		let encoded = encodeURIComponent(urlField.value);
-		window.location.hash = '#' + encoded;
-		readFile(fileNameDisplay, template, list);
-	});
-	readFile(fileNameDisplay, template, list);
+	document.getElementById('file-details').style.display = 'none';
+	setupDropboxOpen();
 });
