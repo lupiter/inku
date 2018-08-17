@@ -1,90 +1,21 @@
 <!DOCTYPE html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-img {
-    object-fit: cover;
-    height: 200px;
-    width: 200px;
-    border-radius: 10px;
-}
-ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 1em;
-    pdding: 0;
-    list-style-type: none;
-}
-li {
-    margin: 1em;
-}
-
-li, a {
-    display: flex;
-    flex-direction: column;
-}
-a, a:visited, a:hover {
-    text-decoration: none;
-    color: black;
-    font-size: larger;
-}
-body {
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-h1 {
-    font-size: 3em;
-    font-weight: 100;
-}
-button {
-    border-radius: 2px;
-    border-width: 0;
-    background: powderblue;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-
-button:hover {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-let data = [
-    {url: "https://google.com", title: "Google", description: "Search the web", image: "https://images.unsplash.com/photo-1531752074002-abf991376d04"},
-    {url: "https://github.com", title: "Github", description: "Sharing code", image: "https://images.unsplash.com/photo-1496200186974-4293800e2c20"},
-];
-
-let preview = document.getElementById("preview-frame");
-let list = document.getElementById("link-list");
-let template = document.getElementById("list-template");
-data.forEach(x => {
-    let newElem = document.importNode(template.content, true);
-    newElem.querySelector("a").href = x.url;
-    newElem.querySelector(".link-text").textContent = x.title;
-    newElem.querySelector(".description").textContent = x.description;
-    newElem.querySelector("img").src = x.image;
-    list.appendChild(newElem);
-});
-});
-</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js"></script>
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.9/Dropbox-sdk.min.js"></script> -->
-	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="pqfc8frnfzizk0h"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.9/Dropbox-sdk.min.js"></script>
+<!-- 	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="pqfc8frnfzizk0h"></script> -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>〽 inku</h1>
+        <h1>inku links</h1>
         <span id='dropbox-button'></span>
-        <div id='file-details'><span id='file-name'></span><button class='save'>save</button></div>
+        <div id="login"><a href="" id="authlink">Login</a></div>
         <button id="add-button">+ link</button>
+        <div id="file-details">Showing <span id="file-name"></span></div>
         <div id='add-form' class='form'>
 	        <span class='picture-form'><label id='img-label' for='img-file'>picture </label> 
 	        	<span class='options'>
@@ -100,7 +31,16 @@ data.forEach(x => {
 	        <span class='footer'><button id='cancel-button'>cancel</button><button id='save-button'>save</button></span>
         </div>
     </header>
-        <section class="list">
+    <section class="file-explorer">
+	    <button>Up</button>
+	    <ul id="file-explorer"></ul>
+    </section>
+    <template id="file-template">
+    	<li>
+    		<span class="file-name"></span>
+    	</li>
+    </template>
+    <section class="list">
         <ul id="link-list">
         </ul>
     </section>

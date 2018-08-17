@@ -66,6 +66,33 @@ h1 {
 	flex: 1;
 	margin-top: 0.25em;
 }
+#file-name {
+	margin-left: 1em;	
+}
+
+.file-explorer {
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(#f6f6f6 0%, #eee 100%);
+	border: 1px solid #ccc;
+	border-left-color: #ddd;
+	border-right-color: #ddd;
+	border-top-color: #f6f6f6;
+	border-radius: 5px;
+	margin: 1em;
+	padding: 1em;
+}
+
+.folder:before {
+	content: "📁";
+}
+
+.file-explorer li {
+	flex: 1;
+	margin: 0.5em;
+	flex-direction: row;
+}
+
 .footer {
 	display: flex;
 	justify-content: flex-end;
