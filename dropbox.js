@@ -52,7 +52,7 @@ export class DropExplorer {
 	setupLoginButton() {
 		let login = document.getElementById('login');
 		this.dbx = new Dropbox.Dropbox({ clientId: this.APP_KEY });
-		let authUrl = this.dbx.getAuthenticationUrl('http://localhost:8080');
+		let authUrl = this.dbx.getAuthenticationUrl(window.location.origin + window.location.pathname);
 		document.getElementById('authlink').href = authUrl;
 		login.style.display = 'flex';
 	}
